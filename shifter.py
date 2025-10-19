@@ -26,17 +26,21 @@ class Shifter:
       self.ping(self.clockPin)
     self.ping(self.latchPin)
 
-#use class
-shift = Shifter(23, 24, 25)
+#only run if file is executed directly
+if __name__=="__main__":
+  #use class
+  shift = Shifter(dataPin=23, latchPin=24, clockPin=25)
 
-try:
-  while 1:
-    for i in range(2**8):
-      shift.shiftByte(i)
-      time.sleep(0.5)
-except:
-
+  try:
+    while 1:
+      for i in range(2**8):
+        shift.shiftByte(i)
+        time.sleep(0.5)
+  except:
   GPIO.cleanup()
+  
+
+
 
 
 
