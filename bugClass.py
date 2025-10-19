@@ -42,7 +42,7 @@ class Bug:
 						self.x = 0
 					elif self.x > 7:
 						self.x =7
-		except KepboardInterrupt:
+		except KeyboardInterrupt:
 			pass
 		finally:
 			self.stop()
@@ -51,6 +51,7 @@ class Bug:
 		self.isRunning = False
 		self.shifter.shiftByte(0) # turn off led
 		GPIO.cleanup()
+
 
 
 
