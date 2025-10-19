@@ -15,7 +15,7 @@ GPIO.setup(s3, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 bug = Bug()
 
 #track s2 val(wraping)
-s2Previous = GPIO.inpu(s2)
+s2Previous = GPIO.input(s2)
 
 #bug initially stopped
 bugOn = False
