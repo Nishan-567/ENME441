@@ -3,6 +3,8 @@ import time
 import random
 import RPi.GPIO as GPIO
 
+GPIO.setmode(GPIO.BCM)
+
 #import shifter
 from shifter import Shifter
 
@@ -31,3 +33,4 @@ try:
 except:
 
 	GPIO.cleanup()
+
