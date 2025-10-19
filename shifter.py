@@ -36,9 +36,10 @@ if __name__=="__main__":
       for i in range(2**8):
         shift.shiftByte(i)
         time.sleep(0.5)
-  except:
-  GPIO.cleanup()
+  except KeyboardInterrupt:
+    GPIO.cleanup()
   
+
 
 
 
