@@ -27,7 +27,8 @@ class Shifter:
     self.ping(self.latchPin)
 
 #use class
-shift = Shifter(23, 24, 25)
+if __name__ == "__main__":
+  shift = Shifter(23, 24, 25)
 
 try:
   while 1:
@@ -37,4 +38,5 @@ try:
 except:
 
   GPIO.cleanup()
+
 
