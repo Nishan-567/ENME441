@@ -52,7 +52,6 @@ class Bug:
 		self.shifter.shiftByte(0) # turn off led
 		GPIO.cleanup()
 
-my_bug = Bug(timeStep=0.05, x=4, isWrapOn=True)
-my_bug.start()
+
 
 
