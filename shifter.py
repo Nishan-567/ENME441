@@ -29,7 +29,7 @@ class Shifter:
 #only run if file is executed directly
 if __name__=="__main__":
   #use class
-  shift = Shifter(dataPin=23, latchPin=24, clockPin=25)
+  shift = Shifter(serialPin=23, latchPin=24, clockPin=25)
 
   try:
     while 1:
@@ -39,6 +39,7 @@ if __name__=="__main__":
   except KeyboardInterrupt:
     GPIO.cleanup()
   
+
 
 
 
