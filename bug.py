@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 from shifter import Shifter
 
 #instantiate a Shifter object
-shift = Shifter(23, 24, 25)
+shift = Shifter(serialPin=23, latchPin=24, clockPin=25)
 
 #star in middle of led
 position = 3
@@ -29,4 +29,5 @@ try:
 		position = max(0, min(7, position))
 		led = 1 << position
 except:
+
 	GPIO.cleanup()
