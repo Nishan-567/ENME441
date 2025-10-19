@@ -5,7 +5,7 @@ GPIO.setmode(GPIO.BCM)
 
 class Shifter:
   #Def for various pins
-  def _init_(self, serialPin, latchPin, clockPin):
+  def __init__(self, serialPin, latchPin, clockPin):
     self.serialPin = serialPin
     self.latchPin = latchPin
     self.clockPin = clockPin
@@ -34,4 +34,5 @@ try:
       shift.shiftByte(i)
       time.sleep(0.5)
 except:
+
   GPIO.cleanup()
