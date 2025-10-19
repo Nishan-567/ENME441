@@ -4,6 +4,7 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 class Shifter:
+  GPIO.setmode(GPIO.BCM)
   #Def for various pins
   def __init__(self, serialPin, latchPin, clockPin):
     self.serialPin = serialPin
@@ -36,3 +37,4 @@ try:
 except:
 
   GPIO.cleanup()
+
