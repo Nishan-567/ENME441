@@ -9,29 +9,49 @@ GPIO.setmode(GPIO.BCM)
 from shifter import Shifter
 
 #instantiate a Shifter object
-shift = Shifter(serialPin=23, latchPin=24, clockPin=25)
+shifter = Shifter(serialPin=23, latchPin=24, clockPin=25)
 
-#start at random position
-position = random.randint(0,7)
+class Bug:
+	def __init__(self, timeStep=.1, x=3, isWrapOn=False):
+		self.timeStep = timeStep
+		self.x = x
+		self.isWrapOn = isWrapOn
+		
+		self.shifter = Shifter(serialPin=23, latchPin=24, clockPin=25)
+		self.isRunning = False
 
-#create bit that coresponds to "position" led
-led = 1 << position #for position = 3, returns 0b00001000 which ligths the 3rd led
+	def start(self):
+		#start LED motion
+		self.isRunning = True
+		try:
+			while self.isRunning:
+				pattern = 1 << self.x
+				self.shifter.shiftByte(pattern) #light x LED
+				time.sleep(self.timeStep) # sleep for timeStep
+				
+				#move left or right
+				step = random.choice([-1, 1])
+				self.x += step
+				
+				#check for wrapping
+				if self.isWrapOn:
+					#wrap 0 to 7 and 7 to 0
+					self.x %= 8
+				else:
+					if self.x < 0:
+						self.x = 0
+					elif self.x > 7:
+						self.x =7
+		except KepboardInterrupt:
+			pass
+		finally:
+			self.stop()
+			
+	def stop(self):
+		self.isRunning = False
+		self.shifter.shiftByte(0) # turn off led
+		GPIO.cleanup()
 
-try:
-	while 1:
-		#light current LED
-		shift.shiftByte(led)
-		time.sleep(.05)
-
-		#move "bug"
-		increment = random.choice([-1, 1])
-		position += increment
-
-		#keep bug on the 8 LEDs
-		position = max(0, min(7, position))
-		led = 1 << position
-except:
-
-	GPIO.cleanup()
-
+my_bug = Bug(timestep=0.05, x=4, isWrapOn=True)
+my_bug.start()
 
