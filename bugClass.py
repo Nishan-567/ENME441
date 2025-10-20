@@ -4,20 +4,20 @@ import random
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
-
+serialPin, latchPin, clockPin  23, 24, 25
 #import shifter
 from shifter import Shifter
 
 #instantiate a Shifter object
-shifter = Shifter(serialPin=23, latchPin=24, clockPin=25)
+shifter = Shifter(serialPin, latchPin, clockPin)
 
 class Bug:
-	def __init__(self, timeStep=.1, x=3, isWrapOn=False):
+	def __init__(self, shifter, timeStep=.1, x=3, isWrapOn=False):
+		self.__shifter = shifter
 		self.timeStep = timeStep
 		self.x = x
 		self.isWrapOn = isWrapOn
 		
-		self.shifter = Shifter(serialPin=23, latchPin=24, clockPin=25)
 		self.isRunning = False
 
 	def start(self):
@@ -51,6 +51,7 @@ class Bug:
 		self.isRunning = False
 		self.shifter.shiftByte(0) # turn off led
 		GPIO.cleanup()
+
 
 
 
