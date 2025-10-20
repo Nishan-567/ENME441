@@ -4,6 +4,13 @@ from bugClass import Bug
 
 GPIO.setmode(GPIO.BCM)
 
+serialPin, latchPin, clockPin = 23, 24, 25
+#import shifter
+from shifter import Shifter
+
+#instantiate a Shifter object
+shifter = Shifter(serialPin, latchPin, clockPin)
+
 #3 GPIO pins
 s1,s2,s3 = 2,3,4
 
@@ -12,7 +19,7 @@ GPIO.setup(s2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(s3, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 # initial bug with default parameters
-bug = Bug()
+bug = Bug(shifter, timeStep=.1, x=3, isWrapOn=False)
 
 #track s2 val(wraping)
 s2Previous = GPIO.input(s2)
