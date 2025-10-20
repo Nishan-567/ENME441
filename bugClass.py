@@ -4,7 +4,7 @@ import random
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
-serialPin, latchPin, clockPin  23, 24, 25
+serialPin, latchPin, clockPin = 23, 24, 25
 #import shifter
 from shifter import Shifter
 
@@ -51,6 +51,7 @@ class Bug:
 		self.isRunning = False
 		self.shifter.shiftByte(0) # turn off led
 		GPIO.cleanup()
+
 
 
 
