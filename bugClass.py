@@ -12,7 +12,7 @@ from shifter import Shifter
 shifter = Shifter(serialPin, latchPin, clockPin)
 
 class Bug:
-	def __init__(self, shifter, timeStep=.1, x=3, isWrapOn=False):
+	def __init__(self, shifter=Shifter(serialPin, latchPin, clockPin), timeStep=.1, x=3, isWrapOn=False):
 		self.__shifter = shifter
 		self.timeStep = timeStep
 		self.x = x
